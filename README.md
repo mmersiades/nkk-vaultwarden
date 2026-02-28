@@ -51,12 +51,30 @@ The setup mostly follows this guide: https://tonyteaches.tech/self-host-vaultwar
 - Create a new user
 
 ### 8. Disable public signups
+
 Update `.env.prod`
+
 ```.env
 SIGNUPS_ALLOWED=false
 ```
+
 and re-upload and then restart the Docker services.
 
-### 9. Set up SSH keys
+### 8. Complete configuration
 
-https://www.youtube.com/watch?v=8ugcUTNoGj4
+Update `.env.prod` to set the configuration you want. Keys to pain particular attention to:
+- ORG_ATTACHMENT_LIMIT
+- USER_ATTACHMENT_LIMIT
+- USER_SEND_LIMIT
+- SMTP_HOST
+- SMTP_FROM
+- SMTP_FROM_NAME
+- SMTP_USERNAME
+- SMTP_PASSWORD
+- SMTP_SECURITY
+- SMTP_PORT
+
+### 9. Set up SSH keys and improve security
+
+- Make changes to the Ubuntu security config to prohibit password authentication (use ssh keys instead) and disable root
+  login.
