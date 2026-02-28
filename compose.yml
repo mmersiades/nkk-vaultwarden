@@ -1,0 +1,28 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    volumes:
+      - ./vw-data:/data
+    ports:
+      - "8080:80"
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    ports:
+      - "80:80"  # Needed for the ACME HTTP-01 challenge.
+      - "443:443"
+      - "443:443/udp" # Needed for HTTP/3.
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy-config:/config
+      - ./caddy-data:/data
+    environment:
+      LOG_FILE: "/data/access.log"
