@@ -1,0 +1,15 @@
+[Unit]
+Description=Vaultwarden Backup Email Notifier
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=warden
+WorkingDirectory=/home/warden/vaultwarden
+ExecStart=/home/warden/vaultwarden/listen_backup.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

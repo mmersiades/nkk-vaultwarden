@@ -1,0 +1,12 @@
+# Set your identity
+set from = "vw-mailer@neonkingkong.com"
+set realname = "Vaultwarden Mailer"
+
+# SMTP Server Settings
+# Use smtps:// for port 465 or smtp:// for port 587
+set smtp_url = "smtps://user@host:587/"
+set smtp_pass = "your-app-password"
+
+# Security settings
+set ssl_starttls = yes
+set ssl_force_tls = yes
