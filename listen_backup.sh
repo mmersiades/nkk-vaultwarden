@@ -4,7 +4,19 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$SCRIPT_DIR/vw-backup"
 LOG_FILE="$SCRIPT_DIR/backup-notifications.log"
-EMAIL="michael@neonkingkong.com"
+
+# Source environment file
+ENV_FILE="$SCRIPT_DIR/.env.prod"
+if [ -f "$ENV_FILE" ]; then
+    source "$ENV_FILE"
+fi
+
+# Require NOTIFIER_TARGET_EMAIL environment variable
+if [ -z "$NOTIFIER_TARGET_EMAIL" ]; then
+    echo "ERROR: NOTIFIER_TARGET_EMAIL environment variable is not set."
+    exit 1
+fi
+EMAIL="$NOTIFIER_TARGET_EMAIL"
 
 # Logging function
 log() {

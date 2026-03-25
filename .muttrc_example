@@ -1,5 +1,5 @@
 # Set your identity
-set from = "vw-mailer@neonkingkong.com"
+set from = "vw-mailer@your-verified-domain.com"
 set realname = "Vaultwarden Mailer"
 
 # SMTP Server Settings
